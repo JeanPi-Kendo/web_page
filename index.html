@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dependencia Tecnológica</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* --- ESTILOS DEL MODAL Y ANIMACIÓN --- */
+
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.4);
+            text-align: center;
+            animation: zoomIn 0.4s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-btn {
+            float: right;
+            font-size: 22px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #888;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #000;
+        }
+
+        header h1 {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dependencia Tecnológica, ¿Cómo prevenirla?</h1>
+    </header>
+
+    <main>
+        <section>
+            <p>
+                La dependencia tecnológica es una forma de adicción moderna que se caracteriza por la necesidad compulsiva de usar aparatos tecnológicos o servicios digitales para realizar actividades cotidianas...
+            </p>
+
+            <h2>Causas</h2>
+            <ul id="lista-causas">
+                <li data-info="El acceso constante a dispositivos como smartphones y computadoras aumenta el tiempo de exposición y dificulta el control de su uso.">
+                    Acceso fácil y constante a la tecnología
+                </li>
+
+                <li data-info="La necesidad de estar siempre disponibles y comunicados provoca ansiedad cuando no se puede responder de inmediato.">
+                    Necesidad de comunicación inmediata
+                </li>
+
+                <li data-info="La oferta ilimitada de videos, juegos y redes sociales genera estímulos constantes difíciles de interrumpir.">
+                    Entretenimiento rápido y constante
+                </li>
+
+                <li data-info="Muchos aspectos de la vida diaria se realizan digitalmente, volviendo difícil desconectarse.">
+                    Uso excesivo en tareas cotidianas
+                </li>
+            </ul>
+
+            <h2>¿Cómo prevenirlo?</h2>
+            <ul id="lista-prevencion">
+                <li data-info="Fijar horarios o límites diarios para redes sociales y dispositivos ayuda a controlar el uso excesivo.">
+                    Establece límites sobre el tiempo que pasas en línea/en tus dispositivos
+                </li>
+
+                <li data-info="Realizar actividades como leer, hacer deporte o salir con amigos permite reducir la dependencia.">
+                    Diversifica tus intereses y actividades más allá del uso de la tecnología
+                </li>
+
+                <li data-info="Fomentar el contacto cara a cara ayuda a fortalecer relaciones reales y reducir la necesidad digital.">
+                    Busca nuevas formas de conectar con el mundo que te rodea
+                </li>
+
+                <li data-info="Reflexionar sobre cuánto y por qué usamos la tecnología es clave para un uso más equilibrado.">
+                    Intenta ser más consciente del uso que haces de la tecnología
+                </li>
+            </ul>
+
+            <h2>Imágenes relacionadas</h2>
+            <div class="image-container">
+                <figure>
+                    <img src="https://www.unir.net/wp-content/uploads/sites/22/2020/12/friends-group-having-addicted-fun-using-mobile-smart-phone-close-up-picture-id1206651666.jpg" alt="Grupo de amigos usando teléfonos móviles">
+                    <figcaption>Ejemplo de uso excesivo de tecnología</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://cloudfront-us-east-1.images.arcpublishing.com/infobae/DG6SJWHWFJEHFGSMN2SUDFAYJA.jpg" alt="Persona desconectándose de dispositivos">
+                    <figcaption>Prevención de la dependencia digital</figcaption>
+                </figure>
+            </div>
+        </section>
+    </main>
+
+    <!-- Ventana Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <p id="modal-text"></p>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('modal');
+        const modalText = document.getElementById('modal-text');
+        const closeBtn = document.querySelector('.close-btn');
+
+        function mostrarInfo(event) {
+            const info = event.target.getAttribute('data-info');
+            modalText.textContent = info;
+            modal.style.display = 'block';
+        }
+
+        closeBtn.onclick = () => modal.style.display = 'none';
+        window.onclick = (e) => { if (e.target == modal) modal.style.display = 'none'; }
+
+        document.querySelectorAll('#lista-causas li, #lista-prevencion li').forEach(item => {
+            item.addEventListener('click', mostrarInfo);
+        });
+    </script>
+</body>
+</html>
